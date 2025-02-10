@@ -23,12 +23,12 @@ async function goThroughProducts(products) {
 
 
 async function checkProductAvailability(link) {
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto(link);
 
   const selector =
-    "::-p-xpath(//span[contains(text(),'Add to bag') or contains(text(),'In den Warenkorb')])";
+    "::-p-xpath(//*[contains(text(),'Add to bag') or contains(text(),'In den Warenkorb')])";
 
   try {
     const element = await page.waitForSelector(selector, { timeout: 5000 });
